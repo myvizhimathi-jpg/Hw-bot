@@ -28,10 +28,8 @@ from playwright.async_api import async_playwright
 BOT_TOKEN = os.getenv("TG_BOT_TOKEN", "PASTE_BOT_TOKEN")
 CHAT_ID = os.getenv("TG_CHAT_ID", "PASTE_CHAT_ID")
 
-# FirstCry-la Hot Wheels listing page URL-a inga podunga (newest first sort pannina nalladhu).
-# Rendu moonu pages venumna list-la serunga.
 LISTING_URLS = [
-    "https://www.firstcry.com/search?q=hot+wheels",
+    "https://www.firstcry.com/hotwheels/5/0/113?sort=bestseller&q=as_hotwheels&asid=53241#sort=newarrivals",
 ]
 
 MIN_WAIT, MAX_WAIT = 60, 90          # seconds between checks
