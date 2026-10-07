@@ -1,6 +1,7 @@
 """
-FirstCry Hot Wheels watcher
-- PUTHU product vandhaalum, out-of-stock -> in-stock aanaalum Telegram alert anuppum
+FirstCry Hot Wheels watcher (v3)
+- Page-la "New Arrivals" sort-a click pannitu padikkum
+- PUTHU product / restock-ku Telegram alert
 - In stock = card-la "ADD TO CART" irundha mattum
 """
 import asyncio
@@ -23,7 +24,7 @@ LISTING_URLS = [
 
 MIN_WAIT, MAX_WAIT = 60, 90
 STATE_FILE = Path(__file__).with_name("hw_state.json")
-STATE_VERSION = 2
+STATE_VERSION = 3
 
 OUT_OF_STOCK_WORDS = (
     "out of stock",
@@ -96,10 +97,44 @@ def has_products(state):
     return any(not k.startswith("_") for k in (state or {}))
 
 
+async def click_visible(page, text, exact):
+    loc = page.get_by_text(text, exact=exact)
+    try:
+        n = await loc.count()
+    except Exception:
+        return False
+    for i in range(n):
+        el = loc.nth(i)
+        try:
+            if await el.is_visible():
+                await el.click(timeout=4000)
+                return True
+        except Exception:
+            continue
+    return False
+
+
+async def apply_new_arrivals(page):
+    """Sort dropdown-la 'New Arrivals' select pannum. Success na True."""
+    for opener in (None, "Sort by", "Best Seller"):
+        if opener:
+            await click_visible(page, opener, False)
+            await page.wait_for_timeout(800)
+        if await click_visible(page, "New Arrivals", True):
+            await page.wait_for_timeout(4500)
+            return True
+    return False
+
+
 async def scrape(page, url):
     await page.goto(url, wait_until="domcontentloaded", timeout=60000)
     await page.wait_for_timeout(5000)
-    for _ in range(3):
+    sort_ok = await apply_new_arrivals(page)
+    if "product-detail" in page.url:  # thappaa vera page-ku poiduchu
+        sort_ok = False
+        await page.goto(url, wait_until="domcontentloaded", timeout=60000)
+        await page.wait_for_timeout(5000)
+    for _ in range(2):
         await page.mouse.wheel(0, 2500)
         await page.wait_for_timeout(1200)
     items = await page.evaluate(JS_EXTRACT)
@@ -112,17 +147,21 @@ async def scrape(page, url):
             "url": it["href"],
             "in_stock": in_stock,
         }
-    return result
+    return result, sort_ok
 
 
 async def check_once(page):
     current = {}
+    sort_ok = True
     for url in LISTING_URLS:
         try:
-            current.update(await scrape(page, url))
+            res, ok = await scrape(page, url)
+            current.update(res)
+            sort_ok = sort_ok and ok
         except Exception as e:
             print("Scrape error:", e)
-    return current
+            sort_ok = False
+    return current, sort_ok
 
 
 async def main():
@@ -147,8 +186,8 @@ async def main():
         page = await ctx.new_page()
 
         while True:
-            current = await check_once(page)
-            print(f"Found {len(current)} products")
+            current, sort_ok = await check_once(page)
+            print(f"Found {len(current)} products | sort_ok={sort_ok}")
 
             if once:
                 for key, d in current.items():
@@ -168,21 +207,27 @@ async def main():
                 if not has_products(state):
                     state = dict(current)
                     save_state(state)
-                    top = ", ".join(d["name"][:35] for d in list(current.values())[:3])
+                    top = "\n".join("- " + d["name"][:60] for d in list(current.values())[:5])
                     in_count = sum(1 for d in current.values() if d["in_stock"])
                     tg(
-                        f"✅ Bot start aachu. {len(current)} products track pannuren "
-                        f"({in_count} in stock).\nTop 3: {top}"
+                        f"✅ Bot start aachu. {len(current)} products ({in_count} in stock).\n"
+                        f"New Arrivals sort: {'OK' if sort_ok else 'FAILED'}\n"
+                        f"Top 5:\n{top}"
                     )
                 else:
-                    for key, d in current.items():
-                        old = state.get(key)
-                        if old is None and d["in_stock"]:
-                            tg(f"🆕 PUTHU LISTING!\n{d['name']}\n{d['url']}")
-                        elif old and not old.get("in_stock") and d["in_stock"]:
-                            tg(f"🔥 RESTOCK!\n{d['name']}\n{d['url']}")
+                    if sort_ok:
+                        for key, d in current.items():
+                            old = state.get(key)
+                            if old is None and d["in_stock"]:
+                                tg(f"🆕 PUTHU LISTING!\n{d['name']}\n{d['url']}")
+                            elif old and not old.get("in_stock") and d["in_stock"]:
+                                tg(f"🔥 RESTOCK!\n{d['name']}\n{d['url']}")
+                        state.pop("_sortwarned", None)
+                        state.update(current)
+                    elif not state.get("_sortwarned"):
+                        tg("⚠️ New Arrivals sort apply aagala. Alerts nirutthi vechirukken. Telegram-la sollunga, fix pannuren.")
+                        state["_sortwarned"] = True
                     state.pop("_warned", None)
-                    state.update(current)
                     save_state(state)
 
             if duration and time.time() - start > duration:
