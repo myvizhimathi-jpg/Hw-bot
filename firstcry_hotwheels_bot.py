@@ -1,5 +1,5 @@
 """
-FirstCry Hot Wheels watcher (v3)
+FirstCry Hot Wheels watcher (v4)
 - Page-la "New Arrivals" sort-a click pannitu padikkum
 - PUTHU product / restock-ku Telegram alert
 - In stock = card-la "ADD TO CART" irundha mattum
@@ -216,14 +216,32 @@ async def main():
                     )
                 else:
                     if sort_ok:
+                        # one-time self test: oru product-a state-la irundhu eduthu fake "puthu" alert
+                        test_key = None
+                        if not state.get("_selftest"):
+                            test_key = next((k for k, d in current.items() if d["in_stock"]), None)
+                            if test_key:
+                                state.pop(test_key, None)
+                            state["_selftest"] = True
                         for key, d in current.items():
                             old = state.get(key)
+                            tag = "🧪 TEST - " if key == test_key else ""
                             if old is None and d["in_stock"]:
-                                tg(f"🆕 PUTHU LISTING!\n{d['name']}\n{d['url']}")
+                                tg(f"{tag}🆕 PUTHU LISTING!\n{d['name']}\n{d['url']}")
                             elif old and not old.get("in_stock") and d["in_stock"]:
                                 tg(f"🔥 RESTOCK!\n{d['name']}\n{d['url']}")
+                        # state update: in-stock -> out-of-stock-ku 3 dhadava thodarndhu paartha apram thaan maathum
+                        for key, d in current.items():
+                            old = state.get(key)
+                            if old is None or d["in_stock"] or not old.get("in_stock"):
+                                state[key] = {**d, "miss": 0}
+                            else:
+                                miss = old.get("miss", 0) + 1
+                                if miss >= 3:
+                                    state[key] = {**d, "miss": 0}
+                                else:
+                                    old["miss"] = miss
                         state.pop("_sortwarned", None)
-                        state.update(current)
                     elif not state.get("_sortwarned"):
                         tg("⚠️ New Arrivals sort apply aagala. Alerts nirutthi vechirukken. Telegram-la sollunga, fix pannuren.")
                         state["_sortwarned"] = True
