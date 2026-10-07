@@ -22,7 +22,7 @@ LISTING_URLS = [
     "https://www.firstcry.com/hotwheels/5/0/113?sort=bestseller&q=as_hotwheels&asid=53241#sort=newarrivals",
 ]
 
-MIN_WAIT, MAX_WAIT = 60, 90
+MIN_WAIT, MAX_WAIT = 15, 25
 STATE_FILE = Path(__file__).with_name("hw_state.json")
 STATE_VERSION = 3
 
