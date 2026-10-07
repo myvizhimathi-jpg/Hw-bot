@@ -1,5 +1,5 @@
 """
-FirstCry Hot Wheels watcher (v8)
+FirstCry Hot Wheels watcher (v9)
 - Page-la "New Arrivals" sort-a click pannitu padikkum
 - PUTHU product / restock-ku Telegram alert
 - In stock = card-la "ADD TO CART" irundha mattum
@@ -26,6 +26,7 @@ LISTING_URLS = [
 ]
 
 MIN_WAIT, MAX_WAIT = 15, 25
+NEW_TOP_N = 25  # puthu listing-na New Arrivals list-oda mela 25-kulla irukkanum
 STATE_FILE = Path(__file__).with_name("hw_state.json")
 STATE_VERSION = 3
 
@@ -326,10 +327,14 @@ async def main():
                                 state.pop(test_key, None)
                             state["_selftest"] = True
                         candidates = []
+                        pos = {k: i + 1 for i, k in enumerate(current.keys())}
                         for key, d in current.items():
                             old = state.get(key)
                             if d["in_stock"] and (old is None or not old.get("in_stock")):
-                                candidates.append((key, "new" if old is None else "restock"))
+                                kind = "new" if old is None else "restock"
+                                if kind == "new" and pos[key] > NEW_TOP_N:
+                                    continue  # list-la deep-aa irukku -> pazhaya product, silent-aa state-la serkkum
+                                candidates.append((key, kind))
                         verified = {}
                         debug = {}
                         for key, kind in candidates[:8]:
@@ -351,7 +356,7 @@ async def main():
                             )
                             tag = "🧪 TEST - " if key == test_key else ""
                             head = "🆕 PUTHU LISTING!" if kind == "new" else "🔥 RESTOCK!"
-                            tg(f"{tag}{head}\n{note}\n{d['name']}\n{d['url']}\n🕐 {stamp}")
+                            tg(f"{tag}{head}\n{note}\n{d['name']}\n{d['url']}\n🕐 {stamp} | 📍 #{pos[key]} of {len(current)}")
                             alerted = True
                             info = debug.get(key)
                             if verified.get(key) is None and info and info.get("shot") and shots < 2:
