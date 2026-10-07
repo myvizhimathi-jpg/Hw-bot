@@ -372,5 +372,11 @@
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-free-wheel-1995-mitsubishi-eclipse-car-grey/24342826/product-detail",
     "in_stock": true,
     "miss": 0
+  },
+  "hot-wheels-die-cast-free-wheel-1995-mazda-rx-7-car-grey": {
+    "name": "Hot Wheels Die Cast Free Wheel 1995 Mazda Rx 7 Car Grey",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-free-wheel-1995-mazda-rx-7-car-grey/24342829/product-detail",
+    "in_stock": false,
+    "miss": 0
   }
 }
