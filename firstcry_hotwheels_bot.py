@@ -1,5 +1,5 @@
 """
-FirstCry Hot Wheels watcher (v7)
+FirstCry Hot Wheels watcher (v8)
 - Page-la "New Arrivals" sort-a click pannitu padikkum
 - PUTHU product / restock-ku Telegram alert
 - In stock = card-la "ADD TO CART" irundha mattum
@@ -76,14 +76,16 @@ JS_STOCK = """
     return r.width > 0 && r.height > 0 && st.visibility !== 'hidden' && st.display !== 'none';
   };
   let add = false, out = false;
+  const seen = [];
   for (const e of document.querySelectorAll('button, a, div, span')) {
     if (e.children.length > 2) continue;
     const t = (e.innerText || '').trim().toLowerCase();
     if (!t || t.length > 30 || !vis(e)) continue;
     if (t === 'add to cart' || t === 'buy now') add = true;
     if (t === 'out of stock' || t === 'notify me' || t === 'sold out') out = true;
+    if (/cart|buy|stock|notify|sold|left/.test(t) && !seen.includes(t) && seen.length < 12) seen.push(t);
   }
-  return {add: add, out: out};
+  return {add: add, out: out, seen: seen};
 }
 """
 
@@ -93,25 +95,51 @@ def ist_now():
 
 
 async def verify_stock(ctx, url):
-    """Product page-a open panni stock check. True=in stock, False=out of stock, None=theriyala"""
+    """Product page-a open panni stock check. Returns (status, info). status: True/False/None(theriyala)"""
     page = await ctx.new_page()
     try:
         await page.goto(url, wait_until="domcontentloaded", timeout=45000)
-        await page.wait_for_timeout(3500)
-        r = await page.evaluate(JS_STOCK)
+        await page.wait_for_timeout(1500)
+        r = {"add": False, "out": False, "seen": []}
+        for _ in range(8):  # button load aaga 8 sec varaikkum wait pannum
+            r = await page.evaluate(JS_STOCK)
+            if r["add"] != r["out"]:
+                break
+            await page.wait_for_timeout(1000)
         if r["out"] and not r["add"]:
-            return False
+            return False, {"seen": r["seen"]}
         if r["add"] and not r["out"]:
-            return True
-        return None
+            return True, {"seen": r["seen"]}
+        shot = None
+        try:
+            shot = await page.screenshot(type="jpeg", quality=55)
+        except Exception:
+            pass
+        return None, {"seen": r["seen"], "shot": shot}
     except Exception as e:
         print("verify error:", e)
-        return None
+        return None, {"seen": ["error"]}
     finally:
         try:
             await page.close()
         except Exception:
             pass
+
+
+def tg_photo(caption: str, jpg: bytes):
+    try:
+        requests.post(
+            f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto",
+            data={"chat_id": CHAT_ID, "caption": caption[:1000]},
+            files={"photo": ("page.jpg", jpg)},
+            timeout=30,
+        )
+    except Exception as e:
+        print("Telegram photo error:", e)
+
+
+def slim(d, miss=0):
+    return {"name": d["name"], "url": d["url"], "in_stock": d["in_stock"], "miss": miss}
 
 
 def push_state():
@@ -215,6 +243,7 @@ async def scrape(page, url):
             "name": it["slug"].replace("-", " ").title()[:100],
             "url": it["href"],
             "in_stock": in_stock,
+            "card": txt[:140],
         }
     return result, sort_ok
 
@@ -275,7 +304,7 @@ async def main():
             else:
                 empty_count = 0
                 if not has_products(state):
-                    state = dict(current)
+                    state = {k: slim(d) for k, d in current.items()}
                     save_state(state)
                     push_state()
                     last_push = time.time()
@@ -302,10 +331,14 @@ async def main():
                             if d["in_stock"] and (old is None or not old.get("in_stock")):
                                 candidates.append((key, "new" if old is None else "restock"))
                         verified = {}
+                        debug = {}
                         for key, kind in candidates[:8]:
-                            verified[key] = await verify_stock(ctx, current[key]["url"])
-                            if verified[key] is False:
+                            status, info = await verify_stock(ctx, current[key]["url"])
+                            verified[key] = status
+                            debug[key] = info
+                            if status is False:
                                 current[key]["in_stock"] = False  # out of stock -> alert illa
+                        shots = 0
                         stamp = ist_now()
                         for key, kind in candidates:
                             d = current[key]
@@ -320,15 +353,23 @@ async def main():
                             head = "🆕 PUTHU LISTING!" if kind == "new" else "🔥 RESTOCK!"
                             tg(f"{tag}{head}\n{note}\n{d['name']}\n{d['url']}\n🕐 {stamp}")
                             alerted = True
+                            info = debug.get(key)
+                            if verified.get(key) is None and info and info.get("shot") and shots < 2:
+                                shots += 1
+                                tg_photo(
+                                    "DEBUG stock check\nbuttons: " + ", ".join(info.get("seen", []))
+                                    + "\ncard: " + d.get("card", ""),
+                                    info["shot"],
+                                )
                         # state update: in-stock -> out-of-stock-ku 3 dhadava thodarndhu paartha apram thaan maathum
                         for key, d in current.items():
                             old = state.get(key)
                             if old is None or d["in_stock"] or not old.get("in_stock"):
-                                state[key] = {**d, "miss": 0}
+                                state[key] = slim(d)
                             else:
                                 miss = old.get("miss", 0) + 1
                                 if miss >= 3:
-                                    state[key] = {**d, "miss": 0}
+                                    state[key] = slim(d)
                                 else:
                                     old["miss"] = miss
                         state.pop("_sortwarned", None)
