@@ -1,15 +1,18 @@
 """
-FirstCry Hot Wheels watcher (v4)
+FirstCry Hot Wheels watcher (v7)
 - Page-la "New Arrivals" sort-a click pannitu padikkum
 - PUTHU product / restock-ku Telegram alert
 - In stock = card-la "ADD TO CART" irundha mattum
+- Alert anuppum munnadi product page-la stock verify pannum
 """
 import asyncio
 import json
 import os
 import random
+import subprocess
 import sys
 import time
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
@@ -63,6 +66,72 @@ JS_EXTRACT = """
   return out;
 }
 """
+
+
+JS_STOCK = """
+() => {
+  const vis = e => {
+    const r = e.getBoundingClientRect();
+    const st = getComputedStyle(e);
+    return r.width > 0 && r.height > 0 && st.visibility !== 'hidden' && st.display !== 'none';
+  };
+  let add = false, out = false;
+  for (const e of document.querySelectorAll('button, a, div, span')) {
+    if (e.children.length > 2) continue;
+    const t = (e.innerText || '').trim().toLowerCase();
+    if (!t || t.length > 30 || !vis(e)) continue;
+    if (t === 'add to cart' || t === 'buy now') add = true;
+    if (t === 'out of stock' || t === 'notify me' || t === 'sold out') out = true;
+  }
+  return {add: add, out: out};
+}
+"""
+
+
+def ist_now():
+    return datetime.now(timezone(timedelta(hours=5, minutes=30))).strftime("%I:%M:%S %p IST")
+
+
+async def verify_stock(ctx, url):
+    """Product page-a open panni stock check. True=in stock, False=out of stock, None=theriyala"""
+    page = await ctx.new_page()
+    try:
+        await page.goto(url, wait_until="domcontentloaded", timeout=45000)
+        await page.wait_for_timeout(3500)
+        r = await page.evaluate(JS_STOCK)
+        if r["out"] and not r["add"]:
+            return False
+        if r["add"] and not r["out"]:
+            return True
+        return None
+    except Exception as e:
+        print("verify error:", e)
+        return None
+    finally:
+        try:
+            await page.close()
+        except Exception:
+            pass
+
+
+def push_state():
+    """GitHub Actions-la odumbodhu state-a udane repo-la save pannum (run naduvula nindrunthaalum spam varaadhu)."""
+    if not os.getenv("GITHUB_ACTIONS"):
+        return
+    cwd = str(Path(__file__).parent)
+    try:
+        run = lambda cmd: subprocess.run(cmd, shell=True, cwd=cwd, capture_output=True, text=True)
+        run('git config user.name "hw-bot"')
+        run('git config user.email "hw-bot@users.noreply.github.com"')
+        run("git add hw_state.json")
+        if run("git diff --cached --quiet").returncode != 0:
+            run('git commit -m "state"')
+            for _ in range(3):
+                if run("git pull --rebase -X theirs origin main && git push").returncode == 0:
+                    break
+                time.sleep(2)
+    except Exception as e:
+        print("push_state error:", e)
 
 
 def tg(msg: str):
@@ -172,6 +241,7 @@ async def main():
     start = time.time()
     state = load_state()
     empty_count = 0
+    last_push = time.time()
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -207,6 +277,8 @@ async def main():
                 if not has_products(state):
                     state = dict(current)
                     save_state(state)
+                    push_state()
+                    last_push = time.time()
                     top = "\n".join("- " + d["name"][:60] for d in list(current.values())[:5])
                     in_count = sum(1 for d in current.values() if d["in_stock"])
                     tg(
@@ -215,6 +287,7 @@ async def main():
                         f"Top 5:\n{top}"
                     )
                 else:
+                    alerted = False
                     if sort_ok:
                         # one-time self test: oru product-a state-la irundhu eduthu fake "puthu" alert
                         test_key = None
@@ -223,13 +296,30 @@ async def main():
                             if test_key:
                                 state.pop(test_key, None)
                             state["_selftest"] = True
+                        candidates = []
                         for key, d in current.items():
                             old = state.get(key)
+                            if d["in_stock"] and (old is None or not old.get("in_stock")):
+                                candidates.append((key, "new" if old is None else "restock"))
+                        verified = {}
+                        for key, kind in candidates[:8]:
+                            verified[key] = await verify_stock(ctx, current[key]["url"])
+                            if verified[key] is False:
+                                current[key]["in_stock"] = False  # out of stock -> alert illa
+                        stamp = ist_now()
+                        for key, kind in candidates:
+                            d = current[key]
+                            if not d["in_stock"]:
+                                continue
+                            note = (
+                                "✅ Stock confirmed"
+                                if verified.get(key) is True
+                                else "⚠️ Stock check aagala, open panni paarunga"
+                            )
                             tag = "🧪 TEST - " if key == test_key else ""
-                            if old is None and d["in_stock"]:
-                                tg(f"{tag}🆕 PUTHU LISTING!\n{d['name']}\n{d['url']}")
-                            elif old and not old.get("in_stock") and d["in_stock"]:
-                                tg(f"🔥 RESTOCK!\n{d['name']}\n{d['url']}")
+                            head = "🆕 PUTHU LISTING!" if kind == "new" else "🔥 RESTOCK!"
+                            tg(f"{tag}{head}\n{note}\n{d['name']}\n{d['url']}\n🕐 {stamp}")
+                            alerted = True
                         # state update: in-stock -> out-of-stock-ku 3 dhadava thodarndhu paartha apram thaan maathum
                         for key, d in current.items():
                             old = state.get(key)
@@ -247,6 +337,9 @@ async def main():
                         state["_sortwarned"] = True
                     state.pop("_warned", None)
                     save_state(state)
+                    if alerted or time.time() - last_push > 300:
+                        push_state()
+                        last_push = time.time()
 
             if duration and time.time() - start > duration:
                 break
