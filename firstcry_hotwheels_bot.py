@@ -1,10 +1,10 @@
 """
-FirstCry Hot Wheels watcher (v11)
+FirstCry Hot Wheels watcher (v12)
 - Page-la "New Arrivals" sort-a click pannitu padikkum
 - PUTHU product / restock-ku Telegram alert
 - In stock = card-la "ADD TO CART" irundha mattum
 - Alert anuppum munnadi product page-la stock verify pannum
-- 30 min-ku oru silent heartbeat message
+- oru naalaiku oru dhadava silent heartbeat message
 """
 import asyncio
 import json
@@ -29,7 +29,7 @@ LISTING_URLS = [
 
 MIN_WAIT, MAX_WAIT = 15, 25
 NEW_TOP_N = 25  # puthu listing-na New Arrivals list-oda mela 25-kulla irukkanum
-HB_EVERY = 1800  # bot uyiroda irukkaanu kaattura silent Telegram message, every 30 min
+HB_EVERY = 86400  # bot uyiroda irukkaanu kaattura silent Telegram message, oru naalaiku oru dhadava
 STATE_FILE = Path(__file__).with_name("hw_state.json")
 STATE_VERSION = 3
 
@@ -282,9 +282,6 @@ async def main():
     state = load_state()
     empty_count = 0
     last_push = time.time()
-    checks = 0
-    sort_fail = 0
-    last_hb = time.time() - HB_EVERY + 120  # first heartbeat ~2 min kalichi
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -300,9 +297,6 @@ async def main():
 
         while True:
             current, sort_ok = await check_once(page)
-            checks += 1
-            if not sort_ok:
-                sort_fail += 1
             print(f"Found {len(current)} products | sort_ok={sort_ok}")
 
             if once:
@@ -405,15 +399,19 @@ async def main():
                         push_state()
                         last_push = time.time()
 
-            if time.time() - last_hb >= HB_EVERY:
-                last_hb = time.time()
+            # heartbeat: last time state file-la save aagum, so run restart aanaalum oru naalaiku oru dhadava thaan varum
+            if state is not None and time.time() - state.get("_hb", 0) >= HB_EVERY:
+                state["_hb"] = time.time()
+                save_state(state)
+                push_state()
+                last_push = time.time()
                 top3 = [
                     f"{i + 1}. {'✅' if d['in_stock'] else '❌'} {d['name'][:55]}"
                     for i, d in enumerate(list(current.values())[:3])
                 ]
                 tg(
                     f"💓 Bot alive {ist_now()}\n"
-                    f"checks: {checks} | sort fail: {sort_fail} | products: {len(current)}\n"
+                    f"products: {len(current)} | sort: {'OK' if sort_ok else 'FAILED'}\n"
                     + "\n".join(top3),
                     silent=True,
                 )
