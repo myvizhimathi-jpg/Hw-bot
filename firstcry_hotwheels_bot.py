@@ -1,5 +1,5 @@
 """
-FirstCry Hot Wheels watcher (v10)
+FirstCry Hot Wheels watcher (v11)
 - Page-la "New Arrivals" sort-a click pannitu padikkum
 - PUTHU product / restock-ku Telegram alert
 - In stock = card-la "ADD TO CART" irundha mattum
@@ -10,6 +10,7 @@ import asyncio
 import json
 import os
 import random
+import re
 import subprocess
 import sys
 import time
@@ -82,11 +83,15 @@ JS_STOCK = """
   const seen = [];
   for (const e of document.querySelectorAll('button, a, div, span')) {
     if (e.children.length > 2) continue;
-    const t = (e.innerText || '').trim().toLowerCase();
-    if (!t || t.length > 30 || !vis(e)) continue;
-    if (t === 'add to cart' || t === 'buy now') add = true;
-    if (t === 'out of stock' || t === 'notify me' || t === 'sold out') out = true;
-    if (/cart|buy|stock|notify|sold|left/.test(t) && !seen.includes(t) && seen.length < 12) seen.push(t);
+    const t = (e.innerText || '').trim().toLowerCase().replace(/\\s+/g, ' ');
+    if (!t || t.length > 20 || !vis(e)) continue;
+    const r = e.getBoundingClientRect();
+    const big = r.width >= 120 && r.height >= 30;   // periya button mattum; color swatch label small
+    const isAdd = t === 'add to cart' || t === 'buy now' || t === 'buynow';
+    const isOut = t === 'out of stock' || t === 'notify me' || t === 'sold out';
+    if (isAdd && big) add = true;
+    if (isOut && big) out = true;
+    if ((isAdd || isOut) && seen.length < 12) seen.push(t + (big ? ' [big]' : ' [small]'));
   }
   return {add: add, out: out, seen: seen};
 }
@@ -367,7 +372,9 @@ async def main():
                             )
                             tag = "🧪 TEST - " if key == test_key else ""
                             head = "🆕 PUTHU LISTING!" if kind == "new" else "🔥 RESTOCK!"
-                            tg(f"{tag}{head}\n{note}\n{d['name']}\n{d['url']}\n🕐 {stamp} | 📍 #{pos[key]} of {len(current)}")
+                            left = re.search(r"(\d+) left", d.get("card", ""))
+                            left_note = f"\n⚡ Only {left.group(1)} left" if left else ""
+                            tg(f"{tag}{head}\n{note}{left_note}\n{d['name']}\n{d['url']}\n🕐 {stamp} | 📍 #{pos[key]} of {len(current)}")
                             alerted = True
                             info = debug.get(key)
                             if verified.get(key) is None and info and info.get("shot") and shots < 2:
