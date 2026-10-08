@@ -1,9 +1,10 @@
 """
-FirstCry Hot Wheels watcher (v9)
+FirstCry Hot Wheels watcher (v10)
 - Page-la "New Arrivals" sort-a click pannitu padikkum
 - PUTHU product / restock-ku Telegram alert
 - In stock = card-la "ADD TO CART" irundha mattum
 - Alert anuppum munnadi product page-la stock verify pannum
+- 30 min-ku oru silent heartbeat message
 """
 import asyncio
 import json
@@ -27,6 +28,7 @@ LISTING_URLS = [
 
 MIN_WAIT, MAX_WAIT = 15, 25
 NEW_TOP_N = 25  # puthu listing-na New Arrivals list-oda mela 25-kulla irukkanum
+HB_EVERY = 1800  # bot uyiroda irukkaanu kaattura silent Telegram message, every 30 min
 STATE_FILE = Path(__file__).with_name("hw_state.json")
 STATE_VERSION = 3
 
@@ -163,11 +165,14 @@ def push_state():
         print("push_state error:", e)
 
 
-def tg(msg: str):
+def tg(msg: str, silent: bool = False):
     try:
+        data = {"chat_id": CHAT_ID, "text": msg}
+        if silent:
+            data["disable_notification"] = "true"  # sound / vibration illa
         requests.post(
             f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-            data={"chat_id": CHAT_ID, "text": msg},
+            data=data,
             timeout=15,
         )
     except Exception as e:
@@ -272,6 +277,9 @@ async def main():
     state = load_state()
     empty_count = 0
     last_push = time.time()
+    checks = 0
+    sort_fail = 0
+    last_hb = time.time() - HB_EVERY + 120  # first heartbeat ~2 min kalichi
 
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
@@ -287,6 +295,9 @@ async def main():
 
         while True:
             current, sort_ok = await check_once(page)
+            checks += 1
+            if not sort_ok:
+                sort_fail += 1
             print(f"Found {len(current)} products | sort_ok={sort_ok}")
 
             if once:
@@ -386,6 +397,19 @@ async def main():
                     if alerted or time.time() - last_push > 300:
                         push_state()
                         last_push = time.time()
+
+            if time.time() - last_hb >= HB_EVERY:
+                last_hb = time.time()
+                top3 = [
+                    f"{i + 1}. {'✅' if d['in_stock'] else '❌'} {d['name'][:55]}"
+                    for i, d in enumerate(list(current.values())[:3])
+                ]
+                tg(
+                    f"💓 Bot alive {ist_now()}\n"
+                    f"checks: {checks} | sort fail: {sort_fail} | products: {len(current)}\n"
+                    + "\n".join(top3),
+                    silent=True,
+                )
 
             if duration and time.time() - start > duration:
                 break
