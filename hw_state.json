@@ -1180,7 +1180,7 @@
   "hot-wheels-fiat-500e-die-cast-free-wheel-toy-car-blue-and-gold": {
     "name": "Hot Wheels Fiat 500E Die Cast Free Wheel Toy Car Blue And Gold",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-fiat-500e-die-cast-free-wheel-toy-car-blue-and-gold/24514777/product-detail",
-    "in_stock": false,
+    "in_stock": true,
     "miss": 0
   },
   "hot-wheels-track-dwagon-die-cast-free-wheel-toy-car-blue-and-gold": {
@@ -1822,6 +1822,24 @@
   "hot-wheels-rodger-dodger-20-die-cast-free-wheel-toy-car-blue-and-gold": {
     "name": "Hot Wheels Rodger Dodger 20 Die Cast Free Wheel Toy Car Blue And Gold",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-rodger-dodger-20-die-cast-free-wheel-toy-car-blue-and-gold/24514775/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-ford-escort-die-cast-free-wheel-toy-car-blue-and-gold": {
+    "name": "Hot Wheels Ford Escort Die Cast Free Wheel Toy Car Blue And Gold",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-ford-escort-die-cast-free-wheel-toy-car-blue-and-gold/24514776/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-ei-segundo-rallye-die-cast-car-145-250-yellow": {
+    "name": "Hot Wheels Ei Segundo Rallye Die Cast Car 145 250 Yellow",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-ei-segundo-rallye-die-cast-car-145-250-yellow/24473028/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-68-mercury-cougar-die-cast-toy-car-purple": {
+    "name": "Hot Wheels 68 Mercury Cougar Die Cast Toy Car Purple",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-68-mercury-cougar-die-cast-toy-car-purple/24473511/product-detail",
     "in_stock": true,
     "miss": 0
   }
