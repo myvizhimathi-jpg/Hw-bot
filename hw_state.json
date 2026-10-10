@@ -1132,7 +1132,7 @@
   "hot-wheels-volvo-240-drift-wagon-die-cast-free-wheel-toy-car-yellow": {
     "name": "Hot Wheels Volvo 240 Drift Wagon Die Cast Free Wheel Toy Car Yellow",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-volvo-240-drift-wagon-die-cast-free-wheel-toy-car-yellow/24503897/product-detail",
-    "in_stock": false,
+    "in_stock": true,
     "miss": 0
   },
   "hot-wheels-uncertain-t-die-cast-free-wheel-toy-car-metallic-red": {
@@ -1690,7 +1690,7 @@
   "hot-wheels-licensed-play-ball-9-inch-yellow": {
     "name": "Hot Wheels Licensed Play Ball 9 Inch Yellow",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-licensed-play-ball-9-inch-yellow/24014393/product-detail",
-    "in_stock": false,
+    "in_stock": true,
     "miss": 0
   },
   "hot-wheels-drift-box-die-cast-free-wheel-toy-car-65-250-blue": {
@@ -1847,6 +1847,12 @@
   "hot-wheels-die-cast-free-wheel-vehicle-toys-in-1-64-scale-pack-of-2-multicolor": {
     "name": "Hot Wheels Die Cast Free Wheel Vehicle Toys In 1 64 Scale Pack Of 2 Multicolor",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-free-wheel-vehicle-toys-in-1-64-scale-pack-of-2-multicolor/20257824/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-the-dark-knight-batmobile-die-cast-free-wheel-toy-car-black": {
+    "name": "Hot Wheels The Dark Knight Batmobile Die Cast Free Wheel Toy Car Black",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-the-dark-knight-batmobile-die-cast-free-wheel-toy-car-black/24503746/product-detail",
     "in_stock": true,
     "miss": 0
   }
