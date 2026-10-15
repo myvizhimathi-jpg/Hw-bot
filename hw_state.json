@@ -152,13 +152,13 @@
   "hot-wheels-hoto-roto-die-cast-free-wheel-toy-car-golden": {
     "name": "Hot Wheels Hoto Roto Die Cast Free Wheel Toy Car Golden",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-hoto-roto-die-cast-free-wheel-toy-car-golden/24473388/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-akei-swap-die-cast-free-wheel-toy-car-blue": {
     "name": "Hot Wheels Akei Swap Die Cast Free Wheel Toy Car Blue",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-akei-swap-die-cast-free-wheel-toy-car-blue/24473460/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-maserati-die-cast-free-wheel-toy-car-black": {
@@ -170,7 +170,7 @@
   "hot-wheels-bone-shaker-die-cast-free-wheel-toy-car-dark-yellow": {
     "name": "Hot Wheels Bone Shaker Die Cast Free Wheel Toy Car Dark Yellow",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-bone-shaker-die-cast-free-wheel-toy-car-dark-yellow/24473476/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-donut-drifter-die-cast-toy-car-brown": {
@@ -224,19 +224,19 @@
   "hot-wheels-cruise-bruiser-die-cast-toy-car-87-250-purple": {
     "name": "Hot Wheels Cruise Bruiser Die Cast Toy Car 87 250 Purple",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-cruise-bruiser-die-cast-toy-car-87-250-purple/24475139/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-morgan-super-3-die-cast-car-138-250-light-yellow": {
     "name": "Hot Wheels Morgan Super 3 Die Cast Car 138 250 Light Yellow",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-morgan-super-3-die-cast-car-138-250-light-yellow/24476257/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-tooned-purple-passion-die-cast-toy-148-250-green": {
     "name": "Hot Wheels Tooned Purple Passion Die Cast Toy 148 250 Green",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-tooned-purple-passion-die-cast-toy-148-250-green/24476800/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-toy-cars-and-trucks,-lets-race-5-pack,-set-of-5-1-64-scale-die-cast-vehicles-from-the-animated-netflix-show,-play-or-display": {
@@ -1426,7 +1426,7 @@
   "hot-wheels-ferrari-12-cilindri-die-cast-toy-car-white-and-black": {
     "name": "Hot Wheels Ferrari 12 Cilindri Die Cast Toy Car White And Black",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-ferrari-12-cilindri-die-cast-toy-car-white-and-black/24475217/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-24-seven-die-cast-car-38-250-blue": {
@@ -1456,7 +1456,7 @@
   "hot-wheels-x-raycers-bullet-proof-diecast-car-132-250-black": {
     "name": "Hot Wheels X Raycers Bullet Proof Diecast Car 132 250 Black",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-x-raycers-bullet-proof-diecast-car-132-250-black/24476138/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-team-wheels-fast-fish-die-cast-toy-car-238-250-royal-blue": {
@@ -1486,7 +1486,7 @@
   "hot-wheels-tooned-volkswagen-golf-mk1-die-cast-car-172-250-yelllow": {
     "name": "Hot Wheels Tooned Volkswagen Golf Mk1 Die Cast Car 172 250 Yelllow",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-tooned-volkswagen-golf-mk1-die-cast-car-172-250-yelllow/24476799/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-76-chevy-chevette-die-cast-toy-car-76-250-light-green": {
@@ -1834,7 +1834,7 @@
   "hot-wheels-ei-segundo-rallye-die-cast-car-145-250-yellow": {
     "name": "Hot Wheels Ei Segundo Rallye Die Cast Car 145 250 Yellow",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-ei-segundo-rallye-die-cast-car-145-250-yellow/24473028/product-detail",
-    "in_stock": true,
+    "in_stock": false,
     "miss": 0
   },
   "hot-wheels-68-mercury-cougar-die-cast-toy-car-purple": {
