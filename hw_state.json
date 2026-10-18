@@ -1115,7 +1115,7 @@
     "name": "Hot Wheels 33 Ford Lo Boy Die Cast Free Wheel Toy Car White",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-33-ford-lo-boy-die-cast-free-wheel-toy-car-white/24503750/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-68-corvette-gas-monkey-garage-die-cast-free-wheel-toy-car-golden": {
     "name": "Hot Wheels 68 Corvette Gas Monkey Garage Die Cast Free Wheel Toy Car Golden",
@@ -1974,7 +1974,7 @@
     "name": "Hot Wheels 88 Mitsubishi Starion Die Cast Free Wheel Toy Car Black",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-88-mitsubishi-starion-die-cast-free-wheel-toy-car-black/24762155/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-mach-speeder-die-cast-free-wheel-toy-car-blue-and-black": {
     "name": "Hot Wheels Mach Speeder Die Cast Free Wheel Toy Car Blue And Black",
@@ -2130,6 +2130,54 @@
     "name": "Hot Wheels Cars, Premium Fast And Furious Mclaren 720S Car For Adult Collectors Grey",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-cars,-premium-fast-and-furious-mclaren-720s-car-for-adult-collectors-grey/24390964/product-detail",
     "in_stock": false,
+    "miss": 0
+  },
+  "hot-wheels-89-mazda-savanna-rx-7-fc3s-112-250-toy-car-green": {
+    "name": "Hot Wheels 89 Mazda Savanna Rx 7 Fc3S 112 250 Toy Car Green",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-89-mazda-savanna-rx-7-fc3s-112-250-toy-car-green/24776024/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-feline-lucky-92-250-toy-car-gold-and-red-black": {
+    "name": "Hot Wheels Feline Lucky 92 250 Toy Car Gold And Red Black",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-feline-lucky-92-250-toy-car-gold-and-red-black/24776070/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-custom-personnalise-72-chevy-luv-127-250-die-cast-toy-car-white-and-blue": {
+    "name": "Hot Wheels Custom Personnalise 72 Chevy Luv 127 250 Die Cast Toy Car White And Blue",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-custom-personnalise-72-chevy-luv-127-250-die-cast-toy-car-white-and-blue/24776076/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-custom-personnalise-2020-honda-e-115-250-toy-car-blue": {
+    "name": "Hot Wheels Custom Personnalise 2020 Honda E 115 250 Toy Car Blue",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-custom-personnalise-2020-honda-e-115-250-toy-car-blue/24776077/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-birthday-burner-82-250-toy-car-red": {
+    "name": "Hot Wheels Birthday Burner 82 250 Toy Car Red",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-birthday-burner-82-250-toy-car-red/24776078/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-twin-tags-166-250-die-cast-toy-car-red-and-white": {
+    "name": "Hot Wheels Twin Tags 166 250 Die Cast Toy Car Red And White",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-twin-tags-166-250-die-cast-toy-car-red-and-white/24776079/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-die-cast-free-wheel-161-250-70-ford-escort-toy-car-grey": {
+    "name": "Hot Wheels Die Cast Free Wheel 161 250 70 Ford Escort Toy Car Grey",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-free-wheel-161-250-70-ford-escort-toy-car-grey/24776080/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-time-shifter-109-250-toy-car-yellow": {
+    "name": "Hot Wheels Time Shifter 109 250 Toy Car Yellow",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-time-shifter-109-250-toy-car-yellow/24776089/product-detail",
+    "in_stock": true,
     "miss": 0
   }
 }
