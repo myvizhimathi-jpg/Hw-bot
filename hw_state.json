@@ -165,7 +165,7 @@
     "name": "Hot Wheels Maserati Die Cast Free Wheel Toy Car Black",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-maserati-die-cast-free-wheel-toy-car-black/24473474/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-bone-shaker-die-cast-free-wheel-toy-car-dark-yellow": {
     "name": "Hot Wheels Bone Shaker Die Cast Free Wheel Toy Car Dark Yellow",
@@ -1312,7 +1312,7 @@
   "hot-wheels-chevy-silverado-driftcation-die-cast-toy-truck-yellow-red": {
     "name": "Hot Wheels Chevy Silverado Driftcation Die Cast Toy Truck Yellow Red",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-chevy-silverado-driftcation-die-cast-toy-truck-yellow-red/24525296/product-detail",
-    "in_stock": false,
+    "in_stock": true,
     "miss": 0
   },
   "hot-wheels-ultra-magnus-die-cast-toy-truck-blue-white": {
@@ -1373,7 +1373,7 @@
     "name": "Hot Wheels Mini Jcw Electric Die Cast Toy Car Light Green",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-mini-jcw-electric-die-cast-toy-car-light-green/24473516/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-66-buick-riviera-die-cast-toy-car-copper-brown": {
     "name": "Hot Wheels 66 Buick Riviera Die Cast Toy Car Copper Brown",
@@ -2196,6 +2196,12 @@
     "name": "Hot Wheels Polestar Die Cast Toy Car 84 250 White And Black",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-polestar-die-cast-toy-car-84-250-white-and-black/24475217/product-detail",
     "in_stock": false,
+    "miss": 0
+  },
+  "hot-wheels-19-mercedes-benz-a-class-die-cast-toy-car-black": {
+    "name": "Hot Wheels 19 Mercedes Benz A Class Die Cast Toy Car Black",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-19-mercedes-benz-a-class-die-cast-toy-car-black/24473499/product-detail",
+    "in_stock": true,
     "miss": 0
   }
 }
