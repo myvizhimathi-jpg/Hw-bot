@@ -1312,7 +1312,7 @@
   "hot-wheels-chevy-silverado-driftcation-die-cast-toy-truck-yellow-red": {
     "name": "Hot Wheels Chevy Silverado Driftcation Die Cast Toy Truck Yellow Red",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-chevy-silverado-driftcation-die-cast-toy-truck-yellow-red/24525296/product-detail",
-    "in_stock": false,
+    "in_stock": true,
     "miss": 0
   },
   "hot-wheels-ultra-magnus-die-cast-toy-truck-blue-white": {
@@ -2411,6 +2411,24 @@
   "hot-wheels-hako-type-d-die-cast-free-wheel-toy-car-black": {
     "name": "Hot Wheels Hako Type D Die Cast Free Wheel Toy Car Black",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-hako-type-d-die-cast-free-wheel-toy-car-black/24761907/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheel-ridge-crest-gt-248-250-toy-car-green": {
+    "name": "Hot Wheel Ridge Crest Gt 248 250 Toy Car Green",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheel-ridge-crest-gt-248-250-toy-car-green/24783697/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-duck-n-roll-toy-car-pink": {
+    "name": "Hot Wheels Duck N Roll Toy Car Pink",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-duck-n-roll-toy-car-pink/24783698/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-chop-n-bloc-182-250-toy-car-red-white": {
+    "name": "Hot Wheels Chop N Bloc 182 250 Toy Car Red White",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-chop-n-bloc-182-250-toy-car-red-white/24783758/product-detail",
     "in_stock": true,
     "miss": 0
   }
