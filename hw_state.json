@@ -1180,7 +1180,7 @@
   "hot-wheels-fiat-500e-die-cast-free-wheel-toy-car-blue-and-gold": {
     "name": "Hot Wheels Fiat 500E Die Cast Free Wheel Toy Car Blue And Gold",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-fiat-500e-die-cast-free-wheel-toy-car-blue-and-gold/24514777/product-detail",
-    "in_stock": false,
+    "in_stock": true,
     "miss": 0
   },
   "hot-wheels-track-dwagon-die-cast-free-wheel-toy-car-blue-and-gold": {
@@ -1337,7 +1337,7 @@
     "name": "Hot Wheels Disney Mickey Mouse Die Cast Toy Car Red",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-disney-mickey-mouse-die-cast-toy-car-red/24473477/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-toyota-prius-personnalise-die-cast-toy-car-green": {
     "name": "Hot Wheels Toyota Prius Personnalise Die Cast Toy Car Green",
