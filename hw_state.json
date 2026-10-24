@@ -2069,7 +2069,7 @@
   "hot-wheels-2019-audi-r8-spyder-130-250-toy-car-silver": {
     "name": "Hot Wheels 2019 Audi R8 Spyder 130 250 Toy Car Silver",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-2019-audi-r8-spyder-130-250-toy-car-silver/24776075/product-detail",
-    "in_stock": false,
+    "in_stock": true,
     "miss": 0
   },
   "hot-wheels-2024-aston-martin-vantage-gt3-125-250-toy-car-white": {
@@ -2429,6 +2429,12 @@
   "hot-wheels-chop-n-bloc-182-250-toy-car-red-white": {
     "name": "Hot Wheels Chop N Bloc 182 250 Toy Car Red White",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-chop-n-bloc-182-250-toy-car-red-white/24783758/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-aston-martin-db5-safari-edition-edition-safari-243-250-toy-car-white": {
+    "name": "Hot Wheels Aston Martin Db5 Safari Edition Edition Safari 243 250 Toy Car White",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-aston-martin-db5-safari-edition-edition-safari-243-250-toy-car-white/24783759/product-detail",
     "in_stock": true,
     "miss": 0
   }
