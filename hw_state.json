@@ -1450,7 +1450,7 @@
   "hot-wheels-ferrari-12-cilindri-die-cast-toy-car-metallic-green": {
     "name": "Hot Wheels Ferrari 12 Cilindri Die Cast Toy Car Metallic Green",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-ferrari-12-cilindri-die-cast-toy-car-metallic-green/24476003/product-detail",
-    "in_stock": false,
+    "in_stock": true,
     "miss": 0
   },
   "hot-wheels-x-raycers-bullet-proof-diecast-car-132-250-black": {
@@ -2489,6 +2489,12 @@
   "hot-wheels-car-culture-team-transport-95-89-porsche-944-turbo-and-2008-porsche-cayenne-in-orange": {
     "name": "Hot Wheels Car Culture Team Transport 95 89 Porsche 944 Turbo And 2008 Porsche Cayenne In Orange",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-car-culture-team-transport-95-89-porsche-944-turbo-and-2008-porsche-cayenne-in-orange/24854851/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-premium-toyota-sorts-car-collector-set-white": {
+    "name": "Hot Wheels Premium Toyota Sorts Car Collector Set White",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-premium-toyota-sorts-car-collector-set-white/24854820/product-detail",
     "in_stock": true,
     "miss": 0
   }
