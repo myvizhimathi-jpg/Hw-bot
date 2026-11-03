@@ -958,7 +958,7 @@
   "hot-wheels-156-250-custom-otto-die-cast-free-wheel-toy-car-blue": {
     "name": "Hot Wheels 156 250 Custom Otto Die Cast Free Wheel Toy Car Blue",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-156-250-custom-otto-die-cast-free-wheel-toy-car-blue/23354597/product-detail",
-    "in_stock": false,
+    "in_stock": true,
     "miss": 0
   },
   "hot-wheels-24-250-track-ripper-die-cast-free-wheel-toy-car-white": {
@@ -1511,7 +1511,7 @@
     "name": "Hot Wheels Stunt Tracks Slam Jump Challenge Track Set And 1 64 Scale Die Cast Car, Adjustable Jump M",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-stunt-tracks-slam-jump-challenge-track-set-and-1-64-scale-die-cast-car,-adjustable-jump-multicolor/21993932/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-stunt-tracks-loop-flag-finish-track-set-and-1-64-scale-die-cast-car,-stunt-with-a-loop-blue": {
     "name": "Hot Wheels Stunt Tracks Loop Flag Finish Track Set And 1 64 Scale Die Cast Car, Stunt With A Loop Bl",
@@ -1649,7 +1649,7 @@
     "name": "Hot Wheels Super Rigs Two Lane Ramptop Gt Scorcher 7 Wheel Car Purple",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-super-rigs-two-lane-ramptop-gt-scorcher-7-wheel-car-purple/24341962/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-super-rigs-batmobile-hauler-camion-de-transport-wheel-car-white-and-black": {
     "name": "Hot Wheels Super Rigs Batmobile Hauler Camion De Transport Wheel Car White And Black",
@@ -1751,7 +1751,7 @@
     "name": "Hot Wheels Mod Mill Die Cast Free Wheel Toy Car 204 250 Black And Red",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-mod-mill-die-cast-free-wheel-toy-car-204-250-black-and-red/24246605/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-fiat-500-c-die-cast-free-wheel-toy-car-192-250-purple": {
     "name": "Hot Wheels Fiat 500 C Die Cast Free Wheel Toy Car 192 250 Purple",
@@ -1763,7 +1763,7 @@
     "name": "Hot Wheels Pt Fast Die Cast Free Wheel Toy Car 187 250 Royal Blue",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-pt-fast-die-cast-free-wheel-toy-car-187-250-royal-blue/24247511/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-94-toyota-supra-die-cast-free-wheel-toy-car-222-250-black": {
     "name": "Hot Wheels 94 Toyota Supra Die Cast Free Wheel Toy Car 222 250 Black",
@@ -1773,7 +1773,7 @@
   },
   "hot-wheels-street-shrieker-die-cast-toy-car-203-250-purple-and-red": {
     "name": "Hot Wheels Street Shrieker Die Cast Toy Car 203 250 Purple And Red",
-    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-street-shrieker-die-cast-toy-car-203-250-purple-and-red/24247517/product-detail",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-street-shrieker-die-cast-toy-car-203-250-purple-and-red/24235315/product-detail",
     "in_stock": false,
     "miss": 0
   },
@@ -1841,7 +1841,7 @@
     "name": "Hot Wheels 68 Mercury Cougar Die Cast Toy Car Purple",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-68-mercury-cougar-die-cast-toy-car-purple/24473511/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "_hb": 1793622700.9024618,
   "hot-wheels-die-cast-free-wheel-vehicle-toys-in-1-64-scale-pack-of-2-multicolor": {
@@ -2070,7 +2070,7 @@
     "name": "Hot Wheels 2019 Audi R8 Spyder 130 250 Toy Car Silver",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-2019-audi-r8-spyder-130-250-toy-car-silver/24776075/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-2024-aston-martin-vantage-gt3-125-250-toy-car-white": {
     "name": "Hot Wheels 2024 Aston Martin Vantage Gt3 125 250 Toy Car White",
@@ -2208,7 +2208,7 @@
     "name": "Hot Wheels Lil Roar Die Cast Free Wheel Toy Car 194 250 White",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-lil-roar-die-cast-free-wheel-toy-car-194-250-white/24247515/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-duck-n-roll-die-cast-toy-car-174-250-with-free-wheel-design-orange-brown": {
     "name": "Hot Wheels Duck N Roll Die Cast Toy Car 174 250 With Free Wheel Design Orange Brown",
@@ -2220,7 +2220,7 @@
     "name": "Hot Wheels Die Cast Toy Car 215 250 Lil Mad Free Wheel Model With Silver Gold Finish",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-toy-car-215-250-lil-mad-free-wheel-model-with-silver-gold-finish/24248195/product-detail",
     "in_stock": true,
-    "miss": 0
+    "miss": 1
   },
   "hot-wheels-die-cast-toy-car-with-click-shift-feature-178-250-silver-orange": {
     "name": "Hot Wheels Die Cast Toy Car With Click Shift Feature 178 250 Silver Orange",
@@ -2597,6 +2597,60 @@
   "hot-wheels-20-dodge-charger-hellcat-134-250-toy-car-orange": {
     "name": "Hot Wheels 20 Dodge Charger Hellcat 134 250 Toy Car Orange",
     "url": "https://www.firstcry.com/hot-wheels/hot-wheels-20-dodge-charger-hellcat-134-250-toy-car-orange/24783761/product-detail",
+    "in_stock": false,
+    "miss": 0
+  },
+  "hot-wheels-free-wheel-die-cast-monster-high-ghoul-mobile-48-250-toy-car-pink-black": {
+    "name": "Hot Wheels Free Wheel Die Cast Monster High Ghoul Mobile 48 250 Toy Car Pink Black",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-free-wheel-die-cast-monster-high-ghoul-mobile-48-250-toy-car-pink-black/23074615/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-diecast-toy-car-hw-torque-free-wheel-model-with-smooth-rolling-wheels-pack-of-5-multicolor": {
+    "name": "Hot Wheels Diecast Toy Car Hw Torque Free Wheel Model With Smooth Rolling Wheels Pack Of 5 Multicolo",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-diecast-toy-car-hw-torque-free-wheel-model-with-smooth-rolling-wheels-pack-of-5-multicolor/22600382/product-detail",
+    "in_stock": true,
+    "miss": 0
+  },
+  "hot-wheels-die-cast-street-shaker-toy-car-202-250-with-free-wheel-feature-blue": {
+    "name": "Hot Wheels Die Cast Street Shaker Toy Car 202 250 With Free Wheel Feature Blue",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-street-shaker-toy-car-202-250-with-free-wheel-feature-blue/24246594/product-detail",
+    "in_stock": false,
+    "miss": 0
+  },
+  "hot-wheels-die-cast-free-wheel-1970-dodge-charger-r-t-l-grey": {
+    "name": "Hot Wheels Die Cast Free Wheel 1970 Dodge Charger R T L Grey",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-free-wheel-1970-dodge-charger-r-t-l-grey/24342828/product-detail",
+    "in_stock": false,
+    "miss": 0
+  },
+  "hot-wheels-55-chevy-panel-dracula-die-cast-free-wheel-toy-jeep-grey": {
+    "name": "Hot Wheels 55 Chevy Panel Dracula Die Cast Free Wheel Toy Jeep Grey",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-55-chevy-panel-dracula-die-cast-free-wheel-toy-jeep-grey/24892748/product-detail",
+    "in_stock": false,
+    "miss": 0
+  },
+  "hot-wheels-40-ford-the-bride-of-frankenstein-die-cast-free-wheel-toy-jeep-white": {
+    "name": "Hot Wheels 40 Ford The Bride Of Frankenstein Die Cast Free Wheel Toy Jeep White",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-40-ford-the-bride-of-frankenstein-die-cast-free-wheel-toy-jeep-white/24892749/product-detail",
+    "in_stock": false,
+    "miss": 0
+  },
+  "hot-wheels-die-cast-free-wheel-shy-guy-b-dasher-intrepide-toy-car-red": {
+    "name": "Hot Wheels Die Cast Free Wheel Shy Guy B Dasher Intrepide Toy Car Red",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-free-wheel-shy-guy-b-dasher-intrepide-toy-car-red/24546534/product-detail",
+    "in_stock": false,
+    "miss": 0
+  },
+  "hot-wheels-die-cast-toy-car-4-250-batmobile-free-wheel-design-navy": {
+    "name": "Hot Wheels Die Cast Toy Car 4 250 Batmobile Free Wheel Design Navy",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-toy-car-4-250-batmobile-free-wheel-design-navy/24247507/product-detail",
+    "in_stock": false,
+    "miss": 0
+  },
+  "hot-wheels-die-cast-toy-car-184-250-68-shelby-gt500-with-free-wheel-model-green": {
+    "name": "Hot Wheels Die Cast Toy Car 184 250 68 Shelby Gt500 With Free Wheel Model Green",
+    "url": "https://www.firstcry.com/hot-wheels/hot-wheels-die-cast-toy-car-184-250-68-shelby-gt500-with-free-wheel-model-green/24248204/product-detail",
     "in_stock": false,
     "miss": 0
   }
